@@ -1,6 +1,6 @@
 # SimpleHttpUtils
 
-闲着蛋疼搓的http工具类
+简洁的http请求工具类
 
 ### 一行代码发起请求
 
