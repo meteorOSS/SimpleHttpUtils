@@ -47,3 +47,5 @@ HttpRequest类提供了一系列便利的方法,例如:
         String response = body.getAsString("utf-8");
         System.out.println(response);
 ```
+
+一些代码结构借鉴了这个仓库 https://github.com/meteorOSS/HTTPUtils
