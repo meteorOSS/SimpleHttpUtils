@@ -106,7 +106,6 @@ public class HttpRequest implements AutoCloseable{
         url = packPathParams();
         // 替换url查询参数
         url = packUrlParams();
-
         return url;
 
     }
@@ -150,7 +149,7 @@ public class HttpRequest implements AutoCloseable{
         // 当请求可以接受请求体
         if(body!=null && httpRequestBase instanceof HttpEntityEnclosingRequestBase) {
             HttpEntityEnclosingRequestBase httpEntityEnclosingRequestBase = (HttpEntityEnclosingRequestBase)httpRequestBase;
-            httpEntityEnclosingRequestBase.setEntity(new StringEntity(this.body));
+            httpEntityEnclosingRequestBase.setEntity(new StringEntity(this.body,"utf-8"));
         }
 
         if(timeOut!=-1){
@@ -159,6 +158,7 @@ public class HttpRequest implements AutoCloseable{
             config.setConnectTimeout(timeOut);
             config.setSocketTimeout(timeOut);
             config.setConnectionRequestTimeout(timeOut);
+            httpRequestBase.setConfig(config.build());
         }
 
         // 设置请求头

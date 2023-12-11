@@ -1,6 +1,7 @@
 package org.example;
 
 import com.zsenhe.httputil.Http;
+import com.zsenhe.httputil.HttpHeaders;
 import com.zsenhe.httputil.callback.AsyncHttpResponseCallBack;
 import com.zsenhe.httputil.request.HttpRequest;
 import com.zsenhe.httputil.request.RequestMethod;
@@ -11,6 +12,15 @@ import java.net.MalformedURLException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
+
+        PackHttpResponse body = Http.url("https://api.github.com/users/{user}")
+                .header(HttpHeaders.USER_AGENT, "user-agent") // 设置请求头字段
+                .body("body") // 设置请求体
+                .timeOut(10).execute(RequestMethod.POST); // 发起Post请求
+
+        String response = body.getAsString("utf-8");
+        System.out.println(response);
 
 
         /**
@@ -40,7 +50,6 @@ public class Main {
              }
          };
          Http.url("https://api.github.com/users/meteorOSS").asyncPost(asyncHttpResponseCallBack);
-
 
     }
 }
